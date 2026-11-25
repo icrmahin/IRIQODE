@@ -38,12 +38,5 @@
   "scripts": {
     "validate": "node scripts/validate.js",
     "package": "vsce package"
-  },
-  "files": [
-    "themes/**",
-    "assets/**",
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE*"
-  ]
+  }
 }
