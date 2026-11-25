@@ -1,0 +1,11 @@
+{
+  "name": "IRIQODE",
+  "version": "0.1.0",
+  "enabled": true,
+  "limit": 24,
+  "palette": {
+    "coral": "#FF806B",
+    "violet": "#9294F5",
+    "cyan": "#64D3DB"
+  }
+}
