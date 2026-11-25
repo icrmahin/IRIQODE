@@ -1,0 +1,36 @@
+name: Validate and package
+
+on:
+  push:
+    branches: [main, "chore/**", "feat/**", "fix/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate manifests and theme
+        run: npm run validate
+      - name: Install VS Code Extension Manager
+        run: npm install --global @vscode/vsce
+      - name: Package VSIX
+        run: vsce package --no-dependencies
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iriqode-vsix
+          path: "*.vsix"
+          if-no-files-found: error
+          retention-days: 14
