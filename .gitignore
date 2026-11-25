@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.vsix
+node_modules/
+.vscode-test/
+coverage/
+.env
+.env.*
+!.env.example
