@@ -1,0 +1,17 @@
+:root {
+  --surface: #090b10;
+  --accent: #9294f5;
+  --signal: #ff806b;
+}
+
+.account-card {
+  display: grid;
+  gap: 0.75rem;
+  color: #e8eaf0;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 65%);
+}
+
+.account-card:hover {
+  border-color: var(--accent);
+}
