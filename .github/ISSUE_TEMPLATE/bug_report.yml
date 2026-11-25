@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a theme, syntax, or workbench issue.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Check existing issues before opening a new report."
+  - type: input
+    id: vscode-version
+    attributes:
+      label: VS Code version
+      placeholder: "e.g. 1.95.0"
+    validations:
+      required: true
+  - type: input
+    id: theme-version
+    attributes:
+      label: IRIQODE version
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Syntax highlighting
+        - Workbench colors
+        - Terminal
+        - File icons
+        - Packaging / installation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the expected and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add screenshots when they help explain the issue.
