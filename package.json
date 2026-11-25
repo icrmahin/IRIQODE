@@ -1,0 +1,50 @@
+{
+  "name": "iriqode",
+  "displayName": "IRIQODE",
+  "description": "A spectral dark theme for Visual Studio Code.",
+  "version": "0.1.0",
+  "publisher": "icrmahin",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "dark theme",
+    "iridescent",
+    "spectral",
+    "minimal"
+  ],
+  "icon": "assets/extension-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icrmahin/IRIQODE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/icrmahin/IRIQODE/issues"
+  },
+  "homepage": "https://github.com/icrmahin/IRIQODE#readme",
+  "contributes": {
+    "themes": [
+      {
+        "label": "IRIQODE",
+        "uiTheme": "vs-dark",
+        "path": "./themes/iriqode-color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "package": "vsce package"
+  },
+  "files": [
+    "themes/**",
+    "assets/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE*"
+  ]
+}
