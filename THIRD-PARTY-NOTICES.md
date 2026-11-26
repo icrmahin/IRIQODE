@@ -4,7 +4,7 @@
 
 IRIQODE stages the following assets from the pinned [icrmahin/Nacre](https://github.com/icrmahin/Nacre) source repository:
 
-- SVG file and folder artwork under `icons/files/` and `icons/folders/`
+- SVG file and folder artwork under `icons/files/` and `icons/build/main/folders/` (generated from Nacre's source folder SVGs)
 - Product icon font, copied to `assets/fonts/iriqode-ui-icons.woff2`
 - File and product icon mapping definitions, adapted for IRIQODE contribution IDs
 

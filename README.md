@@ -54,7 +54,6 @@ IRIQODE is not yet published to the Visual Studio Marketplace.
 For local development, package the extension:
 
 ```bash
-npm install
 npm run validate
 npm run package
 ```
@@ -85,6 +84,8 @@ IRIQODE/
 ├── docs/
 ├── scripts/
 ├── themes/
+├── vendor/
+│   └── nacre-icons/   # pinned Nacre icon source
 │   └── iriqode-color-theme.json
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
