@@ -31,23 +31,23 @@ applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
 
 const folderPurposeColors = [
-  { match: /components|widgets|fragments|ui/, color: "#C18BDF" },
-  { match: /test|jest|cypress|playwright|coverage|spec/, color: "#F2B879" },
-  { match: /docs|documentation|storybook|wiki/, color: "#E995B9" },
-  { match: /asset|image|media|font|svg|static|public/, color: "#64D3DB" },
-  { match: /config|setting|env|vscode|idea|webpack|babel|eslint|prettier|lint/, color: "#9294F5" },
-  { match: /database|db|data|sql|prisma|migration/, color: "#73AFFF" },
-  { match: /git|github|gitlab|ci|workflow|docker|kubernetes|deploy|infra|cloud/, color: "#64D3DB" },
-  { match: /security|auth|permission|credential|key|secret/, color: "#A7D7A8" },
-  { match: /locale|i18n|translation|language/, color: "#E995B9" },
-  { match: /package|dependency|node|vendor|third.party/, color: "#F39A86" },
-  { match: /script|command|task|automation/, color: "#F2B879" },
-  { match: /route|router|navigation|api|server|backend|controller|middleware|service|provider|handler/, color: "#73AFFF" },
-  { match: /src|source|app|page|web|client|frontend|module|plugin|extension|function|class|code/, color: "#FF806B" },
+  { match: /(^|[_\-.])(components|widgets|fragments|ui)([_\-.]|$)/, color: "#C18BDF" },
+  { match: /(^|[_\-.])(test|tests|jest|cypress|playwright|coverage|spec)([_\-.]|$)/, color: "#F2B879" },
+  { match: /(^|[_\-.])(docs|documentation|storybook|wiki)([_\-.]|$)/, color: "#E995B9" },
+  { match: /(^|[_\-.])(asset|assets|image|images|media|font|fonts|svg|static|public)([_\-.]|$)/, color: "#64D3DB" },
+  { match: /(^|[_\-.])(config|configs|setting|settings|env|vscode|idea|webpack|babel|eslint|prettier|lint)([_\-.]|$)/, color: "#9294F5" },
+  { match: /(^|[_\-.])(database|db|data|sql|prisma|migration)([_\-.]|$)/, color: "#73AFFF" },
+  { match: /(^|[_\-.])(git|github|gitlab|ci|workflow|workflows|docker|kubernetes|deploy|infra|cloud)([_\-.]|$)/, color: "#64D3DB" },
+  { match: /(^|[_\-.])(security|auth|permission|credential|key|secret)([_\-.]|$)/, color: "#A7D7A8" },
+  { match: /(^|[_\-.])(locale|locales|i18n|translation|language)([_\-.]|$)/, color: "#E995B9" },
+  { match: /(^|[_\-.])(package|packages|dependency|dependencies|node|vendor|third.party)([_\-.]|$)/, color: "#F39A86" },
+  { match: /(^|[_\-.])(script|scripts|command|task|automation)([_\-.]|$)/, color: "#F2B879" },
+  { match: /(^|[_\-.])(route|routes|router|navigation|api|server|backend|controller|middleware|service|provider|handler)([_\-.]|$)/, color: "#73AFFF" },
+  { match: /(^|[_\-.])(src|source|app|page|pages|web|client|frontend|module|modules|plugin|extension|function|class|code)([_\-.]|$)/, color: "#FF806B" },
 ];
 
 function semanticFolderColor(filename) {
-  const name = path.basename(filename, ".svg").toLowerCase();
+  const name = path.basename(filename, ".svg").toLowerCase().replace(/^folder[_-]/, "");
   for (const entry of folderPurposeColors) {
     if (entry.match.test(name)) return entry.color;
   }
@@ -57,12 +57,17 @@ function semanticFolderColor(filename) {
 function recolorFolderBody(svg, color) {
   // Nacre folder SVGs put the folder silhouette in the first path.
   // Only that path is recolored; embedded task/language artwork remains intact.
-  const firstPath = svg.match(/<path\\b[^>]*>/i);
+  const firstPath = svg.match(/<path\b[^>]*>/i);
   if (!firstPath) return svg;
   const tag = firstPath[0];
-  const updated = /\\bfill\\s*=/.test(tag)
-    ? tag.replace(/\\bfill\\s*=\\s*(["']).*?\\1/i, 'fill="' + color + '"')
-    : tag.replace(/\\s*\\/>$/, ' fill="' + color + '"/>').replace(/>$/, ' fill="' + color + '">');
+  let updated;
+  if (/\bfill\s*=/.test(tag)) {
+    updated = tag.replace(/\bfill\s*=\s*(["']).*?\1/i, 'fill="' + color + '"');
+  } else if (/\/>$/.test(tag)) {
+    updated = tag.replace(/\/>$/, ' fill="' + color + '"/>');
+  } else {
+    updated = tag.replace(/>$/, ' fill="' + color + '">');
+  }
   return svg.replace(tag, updated);
 }
 
