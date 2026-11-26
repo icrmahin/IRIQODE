@@ -27,3 +27,9 @@ jobs:
 
       - name: Validate manifests, mappings, and local assets
         run: npm run validate
+
+      - name: Smoke-test Neovim colorscheme
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes neovim
+          nvim --headless -u NONE --cmd "set runtimepath^=$PWD" +"colorscheme iriqode" +"lua assert(vim.g.colors_name == 'iriqode')" +qa
