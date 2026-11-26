@@ -28,7 +28,6 @@ execFileSync(
 copyTree(requireSource("icons/files"), path.join(root, "icons/files"));
 // Use Nacre original folder SVGs, not its neutralized main build, so embedded marks stay multicolor.
 copyTree(requireSource("icons/folders"), path.join(root, "icons/build/main/folders"));
-applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
 
 const folderPurposeColors = [
@@ -84,6 +83,9 @@ function applySemanticFolderColors(directory) {
     }
   }
 }
+
+// Run only after the semantic palette and helper functions are initialized.
+applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
 const fileTheme = JSON.parse(
   fs.readFileSync(requireSource("themes/nacre-main-file-icons.json"), "utf8")
