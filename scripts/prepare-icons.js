@@ -9,7 +9,7 @@ const iconTarget = path.join(root, "assets/iriqode-icon.png");
 if (!fs.existsSync(iconSource)) {
   throw new Error("The supplied IRIQODE extension icon source is missing.");
 }
-const iconBase64 = fs.readFileSync(iconSource, "utf8").replace(/\\s+/g, "");
+const iconBase64 = fs.readFileSync(iconSource, "utf8").replace(/\s+/g, "");
 const iconPng = Buffer.from(iconBase64, "base64");
 if (iconPng.subarray(0, 8).toString("hex") !== "89504e470d0a1a0a") {
   throw new Error("The supplied IRIQODE extension icon is not a valid PNG.");
