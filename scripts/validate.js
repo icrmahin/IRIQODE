@@ -33,4 +33,27 @@ for (const font of productTheme.fonts) {
 }
 assert(Object.keys(productTheme.iconDefinitions || {}).length >= 150, "Product icon definitions look incomplete.");
 
-console.log(`IRIQODE validation passed: ${Object.keys(fileTheme.iconDefinitions).length} file/folder definitions and ${Object.keys(productTheme.iconDefinitions).length} product icons.`);
+
+const generatedFolderRoot = path.join(root, "icons", "build", "main", "folders");
+const folderSvgPaths = [];
+function collectFolderSvgs(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectFolderSvgs(target);
+    else if (entry.isFile() && entry.name.toLowerCase().endsWith(".svg")) folderSvgPaths.push(target);
+  }
+}
+collectFolderSvgs(generatedFolderRoot);
+assert(folderSvgPaths.length > 0, "Generated folder artwork is missing.");
+const folderBodyColors = new Set();
+for (const svgPath of folderSvgPaths) {
+  const svg = fs.readFileSync(svgPath, "utf8");
+  const firstPath = svg.match(/<path\\b[^>]*>/i);
+  assert(firstPath, `Folder artwork has no body path: ${path.relative(root, svgPath)}`);
+  const fill = firstPath[0].match(/\\bfill=["'](#[0-9a-f]{6})["']/i);
+  assert(fill, `Folder body has no explicit color: ${path.relative(root, svgPath)}`);
+  folderBodyColors.add(fill[1].toUpperCase());
+}
+assert(folderBodyColors.size >= 6, `Expected purpose-based folder colors; found only ${folderBodyColors.size}.`);
+
+console.log(`IRIQODE validation passed: ${folderBodyColors.size} folder body colors,  ${Object.keys(fileTheme.iconDefinitions).length} file/folder definitions and ${Object.keys(productTheme.iconDefinitions).length} product icons.`);
