@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out selected ref and pinned icon source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Validate themes and bundled assets
         run: npm run validate
@@ -37,7 +37,7 @@ jobs:
           npx --yes @vscode/vsce package --no-dependencies --out "dist/IRIQODE-${VERSION}.vsix"
 
       - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: iriqode-vsix
           path: dist/*.vsix

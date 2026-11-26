@@ -20,7 +20,7 @@ VS Code theme token foregrounds are solid colors. The spectral variable progress
 
 ## Icon system
 
-The file and product icon themes are separate contributions. `vendor/nacre-icons` pins the source repository at a specific commit. `npm run prepare:icons` runs Nacre's own icon generator, then copies its main file/folder theme, SVG assets, mappings, and WOFF2 font into the package paths, renaming the contribution IDs and font ID to IRIQODE. Generated assets are ignored by Git and are included in the VSIX after preparation. Nacre remains untouched. The MIT license and original notice are retained in `THIRD-PARTY-NOTICES.md`.
+The file and product icon themes are separate contributions. `vendor/nacre-icons` pins the source repository at a specific commit. `npm run prepare:icons` runs Nacre's own icon generator, then copies its main file/folder theme, SVG assets, mappings, and WOFF2 font into the package paths, renaming the contribution IDs and font ID to IRIQODE. A semantic folder pass recolors only each folder silhouette according to its purpose; embedded marks and file glyphs remain unchanged. Generated assets are ignored by Git and are included in the VSIX after preparation. Nacre remains untouched. The MIT license and original notice are retained in `THIRD-PARTY-NOTICES.md`.
 
 ## Quality gates
 
