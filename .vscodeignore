@@ -13,3 +13,8 @@ node_modules/**
 .gitmodules
 vendor/**
 assets/iriqode-icon.png.base64
+
+# Neovim companion (kept out of the VS Code extension package)
+colors/**
+lua/**
+neovim/**
