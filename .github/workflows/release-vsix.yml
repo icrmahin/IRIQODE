@@ -1,0 +1,45 @@
+name: Build IRIQODE VSIX
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: iriqode-vsix-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Validate and package VSIX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out selected ref and pinned icon source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate themes and bundled assets
+        run: npm run validate
+
+      - name: Package VSIX
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(node -p "require('./package.json').version")"
+          mkdir -p dist
+          npx --yes @vscode/vsce package --no-dependencies --out "dist/IRIQODE-${VERSION}.vsix"
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iriqode-vsix
+          path: dist/*.vsix
+          if-no-files-found: error
+          retention-days: 30

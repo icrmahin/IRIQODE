@@ -1,0 +1,3 @@
+[submodule "vendor/nacre-icons"]
+	path = vendor/nacre-icons
+	url = https://github.com/icrmahin/Nacre.git

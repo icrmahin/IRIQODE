@@ -7,7 +7,9 @@ IRIQODE is a standalone Visual Studio Code extension. The color theme and future
 - `package.json` — extension metadata and contribution points.
 - `themes/iriqode-color-theme.json` — workbench colors, TextMate rules, and semantic token colors.
 - `scripts/validate.js` — dependency-free manifest and theme validation.
-- `assets/` — project artwork and, later, extension identity assets.
+- `vendor/nacre-icons/` — pinned, read-only Nacre source submodule.
+- `scripts/prepare-icons.js` — stages the Nacre SVGs, mappings, and product font into the extension package.
+- `icons/` and `assets/fonts/` — generated local package assets; intentionally not committed.
 - `.github/workflows/` — automated validation and packaging.
 
 ## Design implementation
@@ -18,7 +20,7 @@ VS Code theme token foregrounds are solid colors. The spectral variable progress
 
 ## Icon system
 
-The file icon theme is intentionally not registered until its artwork, associations, and licensing are reviewed. Nacre remains a separate repository and must not be modified. Any reused artwork must be copied into this repository only after its license and attribution requirements are verified.
+The file and product icon themes are separate contributions. `vendor/nacre-icons` pins the source repository at a specific commit. `npm run prepare:icons` copies the source SVGs, mappings, and WOFF2 font into the package paths, renaming the contribution IDs and font ID to IRIQODE. Generated assets are ignored by Git and are included in the VSIX after preparation. Nacre remains untouched. The MIT license and original notice are retained in `THIRD-PARTY-NOTICES.md`.
 
 ## Quality gates
 
