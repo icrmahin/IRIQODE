@@ -3,6 +3,21 @@ const path = require("node:path");
 const { execFileSync } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
+
+const iconSource = path.join(root, "assets/iriqode-icon.png.base64");
+const iconTarget = path.join(root, "assets/iriqode-icon.png");
+if (!fs.existsSync(iconSource)) {
+  throw new Error("The supplied IRIQODE extension icon source is missing.");
+}
+const iconBase64 = fs.readFileSync(iconSource, "utf8").replace(/\s+/g, "");
+const iconPng = Buffer.from(iconBase64, "base64");
+if (iconPng.subarray(0, 8).toString("hex") !== "89504e470d0a1a0a") {
+  throw new Error("The supplied IRIQODE extension icon is not a valid PNG.");
+}
+if (iconPng.readUInt32BE(16) < 128 || iconPng.readUInt32BE(20) < 128) {
+  throw new Error("The IRIQODE extension icon must be at least 128x128 pixels.");
+}
+fs.writeFileSync(iconTarget, iconPng);
 const source = path.join(root, "vendor", "nacre-icons");
 const requireSource = (relative) => {
   const target = path.join(source, relative);
@@ -28,8 +43,8 @@ execFileSync(
 copyTree(requireSource("icons/files"), path.join(root, "icons/files"));
 // Use Nacre original folder SVGs, not its neutralized main build, so embedded marks stay multicolor.
 copyTree(requireSource("icons/folders"), path.join(root, "icons/build/main/folders"));
-applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
+applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
 const folderPurposeColors = [
   { match: /(^|[_\-.])(components|widgets|fragments|ui)([_\-.]|$)/, color: "#C18BDF" },
@@ -84,6 +99,11 @@ function applySemanticFolderColors(directory) {
     }
   }
 }
+
+
+// Run only after the semantic palette and helper functions are initialized.
+applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
+
 
 const fileTheme = JSON.parse(
   fs.readFileSync(requireSource("themes/nacre-main-file-icons.json"), "utf8")
