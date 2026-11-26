@@ -1,0 +1,39 @@
+# Third-party notices
+
+## Nacre icon artwork and product font
+
+IRIQODE stages the following assets from the pinned [icrmahin/Nacre](https://github.com/icrmahin/Nacre) source repository:
+
+- SVG file and folder artwork under `icons/files/` and `icons/build/main/folders/` (generated from Nacre's source folder SVGs)
+- Product icon font, copied to `assets/fonts/iriqode-ui-icons.woff2`
+- File and product icon mapping definitions, adapted for IRIQODE contribution IDs
+
+The Nacre source repository retains the following original copyright notice for its supplied base project and icon assets:
+
+Copyright (c) 2026 nionx01
+
+These copied assets are distributed under the MIT License. This notice applies to the Nacre artwork/font and their adaptations; it does not relicense IRIQODE's original color theme or other original code.
+
+### MIT License
+
+MIT License
+
+Copyright (c) 2026 nionx01
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

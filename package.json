@@ -16,7 +16,10 @@
     "dark theme",
     "iridescent",
     "spectral",
-    "minimal"
+    "minimal",
+    "file icons",
+    "folder icons",
+    "product icons"
   ],
   "repository": {
     "type": "git",
@@ -33,10 +36,27 @@
         "uiTheme": "vs-dark",
         "path": "./themes/iriqode-color-theme.json"
       }
+    ],
+    "iconThemes": [
+      {
+        "id": "iriqode-file-icons",
+        "label": "IRIQODE File Icons",
+        "path": "./themes/iriqode-file-icons.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "iriqode-product-icons",
+        "label": "IRIQODE Product Icons",
+        "path": "./themes/iriqode-product-icons.json"
+      }
     ]
   },
   "scripts": {
+    "prepare:icons": "node scripts/prepare-icons.js",
+    "prevalidate": "npm run prepare:icons",
     "validate": "node scripts/validate.js",
-    "package": "vsce package"
+    "package": "npm run validate && npx --yes @vscode/vsce package --no-dependencies",
+    "vscode:prepublish": "npm run validate"
   }
 }

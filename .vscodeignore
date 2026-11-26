@@ -9,3 +9,6 @@ tests/**
 node_modules/**
 !README.md
 !CHANGELOG.md
+
+.gitmodules
+vendor/**

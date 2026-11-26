@@ -23,6 +23,14 @@ Install the resulting VSIX in a clean VS Code profile:
 4. Select the generated package.
 5. Run **Preferences: Color Theme** and select **IRIQODE**.
 
+## Icon review
+
+After `npm run validate` stages the pinned icon assets, inspect both themes in VS Code:
+
+- File icons: extension mappings, exact filenames, language IDs, and common file types.
+- Folder icons: named folders, root folders, closed/open states, and embedded glyph colors.
+- Product icons: Activity Bar, Explorer actions, tabs, panels, status bar, and editor glyphs.
+
 ## Visual review
 
 Open the samples in `tests/fixtures/syntax/` and inspect:

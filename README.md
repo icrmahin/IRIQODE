@@ -6,7 +6,7 @@
 
 Futuristic surrealism · Iridescent color · Dark digital minimalism
 
-[![Validate and package](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml/badge.svg)](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml)
+[![Validate](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml/badge.svg)](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml)
 ![Version](https://img.shields.io/badge/version-0.1.0-9294F5?style=flat)
 ![Status](https://img.shields.io/badge/status-in%20development-E995B9?style=flat)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85%2B-73AFFF?style=flat)
@@ -17,7 +17,7 @@ Futuristic surrealism · Iridescent color · Dark digital minimalism
 
 IRIQODE is an expressive dark workspace built around a deep near-black foundation and a controlled spectral syntax system. Its color language moves from coral and rose through violet, indigo, electric blue, and cyan—without sacrificing code readability.
 
-> **Current state:** The first standalone color-theme implementation and repository tooling are in place. Visual validation and icon design are still in progress.
+> **Current state:** The color theme has been tested in VS Code. Nacre's file/folder and product icon themes are integrated as independently selectable contributions.
 
 ## The visual system
 
@@ -33,6 +33,20 @@ The editor stays quiet. Spectral color carries semantic meaning across variables
 
 **Read the complete [Visual System](docs/VISUAL-SYSTEM.md)** for the palette, token mapping, workbench specification, icon principles, and acceptance criteria.
 
+## Icon themes
+
+IRIQODE includes two independently selectable icon themes sourced from Nacre:
+
+- **IRIQODE File Icons** — Nacre's main file/folder theme, including its original file glyphs and neutral folder treatment.
+- **IRIQODE Product Icons** — the 171 product glyphs and their bundled WOFF2 font.
+
+Activate them from the Command Palette:
+
+- `Preferences: File Icon Theme` → **IRIQODE File Icons**
+- `Preferences: Product Icon Theme` → **IRIQODE Product Icons**
+
+The Nacre source is pinned as a Git submodule. The release workflow stages the icon assets into the VSIX; Nacre itself is never modified.
+
 ## Installation
 
 IRIQODE is not yet published to the Visual Studio Marketplace.
@@ -40,10 +54,8 @@ IRIQODE is not yet published to the Visual Studio Marketplace.
 For local development, package the extension:
 
 ```bash
-npm install
-npm install --global @vscode/vsce
 npm run validate
-vsce package --no-dependencies
+npm run package
 ```
 
 Then install the generated `.vsix` file using **Extensions: Install from VSIX…** in VS Code.
@@ -51,7 +63,7 @@ Then install the generated `.vsix` file using **Extensions: Install from VSIX…
 ## Development
 
 ```bash
-git clone https://github.com/icrmahin/IRIQODE.git
+git clone --recurse-submodules https://github.com/icrmahin/IRIQODE.git
 cd IRIQODE
 npm run validate
 ```
@@ -72,6 +84,8 @@ IRIQODE/
 ├── docs/
 ├── scripts/
 ├── themes/
+├── vendor/
+│   └── nacre-icons/   # pinned Nacre icon source
 │   └── iriqode-color-theme.json
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
@@ -86,15 +100,14 @@ IRIQODE/
 - [x] Implement the initial workbench and syntax palette
 - [x] Add automated validation and VSIX packaging
 - [ ] Validate contrast and syntax in real VS Code projects
-- [ ] Design and implement the file icon theme
+- [x] Integrate Nacre file, folder, and product icon themes
+- [ ] Review icon rendering in a clean VS Code profile
 - [ ] Capture final screenshots and prepare a release
 
 ## Project boundaries
 
-IRIQODE is independent of [Nacre](https://github.com/icrmahin/Nacre). Nacre will not be modified. Any artwork considered for reuse must be copied into this repository only after its provenance and licensing requirements have been checked.
+IRIQODE remains a separate extension. Nacre is consumed as a pinned, read-only submodule and is never modified. Its icon artwork and font retain their MIT attribution; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-The extension icon and file icon theme are not final yet. No placeholder is presented as finished artwork.
+## Licensing
 
-## License
-
-No open-source license has been granted yet. All rights are reserved by the copyright holder unless a separate license is added.
+IRIQODE's original code remains all-rights-reserved under [LICENSE.md](LICENSE.md). The Nacre artwork and product icon font retain their MIT license and original copyright notice in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

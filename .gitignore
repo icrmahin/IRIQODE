@@ -7,3 +7,7 @@ coverage/
 .env
 .env.*
 !.env.example
+
+# Generated from the pinned Nacre icon submodule
+icons/
+assets/fonts/
