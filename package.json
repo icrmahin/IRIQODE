@@ -58,5 +58,6 @@
     "validate": "node scripts/validate.js",
     "package": "npm run validate && npx --yes @vscode/vsce package --no-dependencies",
     "vscode:prepublish": "npm run validate"
-  }
+  },
+  "icon": "assets/iriqode-icon.png"
 }
