@@ -1,0 +1,11 @@
+.github/**
+.vscode/**
+docs/**
+scripts/**
+tests/**
+.gitignore
+.vscodeignore
+*.vsix
+node_modules/**
+!README.md
+!CHANGELOG.md
