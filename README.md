@@ -6,7 +6,7 @@
 
 Futuristic surrealism · Iridescent color · Dark digital minimalism
 
-[![Validate and package](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml/badge.svg)](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml)
+[![Validate](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml/badge.svg)](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml)
 ![Version](https://img.shields.io/badge/version-0.1.0-9294F5?style=flat)
 ![Status](https://img.shields.io/badge/status-in%20development-E995B9?style=flat)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85%2B-73AFFF?style=flat)
@@ -55,9 +55,8 @@ For local development, package the extension:
 
 ```bash
 npm install
-npm install --global @vscode/vsce
 npm run validate
-vsce package --no-dependencies
+npm run package
 ```
 
 Then install the generated `.vsix` file using **Extensions: Install from VSIX…** in VS Code.
