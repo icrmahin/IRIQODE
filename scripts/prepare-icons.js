@@ -26,7 +26,8 @@ execFileSync(
 );
 
 copyTree(requireSource("icons/files"), path.join(root, "icons/files"));
-copyTree(requireSource("icons/build/main/folders"), path.join(root, "icons/build/main/folders"));
+// Use Nacre original folder SVGs, not its neutralized main build, so embedded marks stay multicolor.
+copyTree(requireSource("icons/folders"), path.join(root, "icons/build/main/folders"));
 applySemanticFolderColors(path.join(root, "icons/build/main/folders"));
 
 
