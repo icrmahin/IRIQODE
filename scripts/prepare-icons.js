@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const { execFileSync } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
 const source = path.join(root, "vendor", "nacre-icons");
@@ -16,16 +17,28 @@ const copyTree = (from, to) => {
   fs.cpSync(from, to, { recursive: true, force: true });
 };
 
-copyTree(requireSource("icons/files"), path.join(root, "icons/files"));
-copyTree(requireSource("icons/folders"), path.join(root, "icons/folders"));
+// Run Nacre's own icon generator so IRIQODE receives the exact main icon
+// theme, including its neutral folder treatment—not a palette variant.
+execFileSync(
+  process.execPath,
+  [requireSource("scripts/build-icon-themes.mjs")],
+  { cwd: source, stdio: "inherit" }
+);
 
-const fileTheme = JSON.parse(fs.readFileSync(requireSource("themes/nacre-file-icons.json"), "utf8"));
+copyTree(requireSource("icons/files"), path.join(root, "icons/files"));
+copyTree(requireSource("icons/build/main/folders"), path.join(root, "icons/build/main/folders"));
+
+const fileTheme = JSON.parse(
+  fs.readFileSync(requireSource("themes/nacre-main-file-icons.json"), "utf8")
+);
 fs.writeFileSync(
   path.join(root, "themes/iriqode-file-icons.json"),
   JSON.stringify(fileTheme, null, 2) + "\n"
 );
 
-const productTheme = JSON.parse(fs.readFileSync(requireSource("themes/nacre-product-icons.json"), "utf8"));
+const productTheme = JSON.parse(
+  fs.readFileSync(requireSource("themes/nacre-product-icons.json"), "utf8")
+);
 productTheme.fonts[0].id = "iriqode-ui-icons";
 productTheme.fonts[0].src[0].path = "../assets/fonts/iriqode-ui-icons.woff2";
 for (const definition of Object.values(productTheme.iconDefinitions || {})) {
@@ -41,4 +54,4 @@ fs.writeFileSync(
   JSON.stringify(productTheme, null, 2) + "\n"
 );
 
-console.log("Prepared IRIQODE file, folder, and product icons from the pinned Nacre source.");
+console.log("Prepared the Nacre main file/folder theme and product icons for IRIQODE.");

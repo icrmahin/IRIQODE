@@ -37,7 +37,7 @@ The editor stays quiet. Spectral color carries semantic meaning across variables
 
 IRIQODE includes two independently selectable icon themes sourced from Nacre:
 
-- **IRIQODE File Icons** — the file and folder associations with their original SVG artwork.
+- **IRIQODE File Icons** — Nacre's main file/folder theme, including its original file glyphs and neutral folder treatment.
 - **IRIQODE Product Icons** — the 171 product glyphs and their bundled WOFF2 font.
 
 Activate them from the Command Palette:
