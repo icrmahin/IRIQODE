@@ -2,7 +2,7 @@
 
 # I R I Q O D E
 
-**A spectral dark theme for Visual Studio Code.**
+**A spectral dark theme for Visual Studio Code and Neovim.**
 
 The supplied iridescent IRIQODE artwork is now the official extension icon.
 
@@ -61,6 +61,30 @@ npm run package
 ```
 
 Then install the generated `.vsix` file using **Extensions: Install from VSIX…** in VS Code.
+
+## Neovim / LazyVim
+
+IRIQODE also includes a native Neovim colorscheme. It mirrors the VS Code palette, syntax roles, Tree-sitter captures, LSP semantic tokens, terminal ANSI colors, and common LazyVim plugin surfaces.
+
+Add this plugin spec to `lua/plugins/iriqode.lua` in your LazyVim configuration:
+
+```lua
+return {
+  {
+    "icrmahin/IRIQODE",
+    name = "iriqode",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("iriqode")
+    end,
+  },
+}
+```
+
+Then run `:Lazy sync` and restart Neovim.
+
+See the [Neovim installation and parity guide](neovim/README.md). Terminal window decorations remain controlled by the terminal emulator, not Neovim's colorscheme.
 
 ## Development
 
