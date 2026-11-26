@@ -11,6 +11,11 @@ const checkAsset = (ownerFile, relativePath) => {
 };
 
 const manifest = readJson("package.json");
+
+assert(manifest.icon === "assets/iriqode-icon.png", "Extension icon manifest path is missing.");
+const extensionIcon = fs.readFileSync(path.join(root, manifest.icon));
+assert(extensionIcon.subarray(0, 8).toString("hex") === "89504e470d0a1a0a", "Extension icon is not a valid PNG.");
+assert(extensionIcon.readUInt32BE(16) >= 128 && extensionIcon.readUInt32BE(20) >= 128, "Extension icon must be at least 128x128 pixels.");
 const colorTheme = readJson("themes/iriqode-color-theme.json");
 const fileTheme = readJson("themes/iriqode-file-icons.json");
 const productTheme = readJson("themes/iriqode-product-icons.json");
