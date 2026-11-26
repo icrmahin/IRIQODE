@@ -4,6 +4,8 @@
 
 **A spectral dark theme for Visual Studio Code.**
 
+The supplied iridescent IRIQODE artwork is now the official extension icon.
+
 Futuristic surrealism · Iridescent color · Dark digital minimalism
 
 [![Validate](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml/badge.svg)](https://github.com/icrmahin/IRIQODE/actions/workflows/validate.yml)
