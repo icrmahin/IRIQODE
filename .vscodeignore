@@ -12,3 +12,4 @@ node_modules/**
 
 .gitmodules
 vendor/**
+assets/iriqode-icon.png.base64
