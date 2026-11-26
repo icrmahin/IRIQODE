@@ -48,9 +48,9 @@ assert(folderSvgPaths.length > 0, "Generated folder artwork is missing.");
 const folderBodyColors = new Set();
 for (const svgPath of folderSvgPaths) {
   const svg = fs.readFileSync(svgPath, "utf8");
-  const firstPath = svg.match(/<path\\b[^>]*>/i);
+  const firstPath = svg.match(/<path\b[^>]*>/i);
   assert(firstPath, `Folder artwork has no body path: ${path.relative(root, svgPath)}`);
-  const fill = firstPath[0].match(/\\bfill=["'](#[0-9a-f]{6})["']/i);
+  const fill = firstPath[0].match(/\bfill=["'](#[0-9a-f]{6})["']/i);
   assert(fill, `Folder body has no explicit color: ${path.relative(root, svgPath)}`);
   folderBodyColors.add(fill[1].toUpperCase());
 }
