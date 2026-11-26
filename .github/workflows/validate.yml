@@ -28,7 +28,7 @@ jobs:
       - name: Package VSIX
         run: vsce package --no-dependencies
       - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: iriqode-vsix
           path: "*.vsix"
