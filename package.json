@@ -1,7 +1,7 @@
 {
   "name": "iriqode",
   "displayName": "IRIQODE",
-  "description": "A spectral dark theme for Visual Studio Code.",
+  "description": "A spectral dark theme for Visual Studio Code and Neovim.",
   "version": "0.1.0",
   "publisher": "icrmahin",
   "license": "UNLICENSED",
@@ -19,7 +19,11 @@
     "minimal",
     "file icons",
     "folder icons",
-    "product icons"
+    "product icons",
+    "neovim",
+    "lazyvim",
+    "colorscheme",
+    "treesitter"
   ],
   "repository": {
     "type": "git",
